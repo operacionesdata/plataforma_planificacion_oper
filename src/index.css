@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sistema de gestión operaciones - Design System */
+
+@layer base {
+  :root {
+    /* Colores principales del dashboard de buceo */
+    --background: 220 25% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 220 25% 8%;
+
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 10% 70%;
+
+    --accent: 195 100% 55%;
+    --accent-foreground: 220 25% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 120 100% 40%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 45 100% 60%;
+    --warning-foreground: 220 25% 8%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 20%;
+    --ring: 210 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Gradientes específicos para buceo */
+    --gradient-ocean: linear-gradient(135deg, hsl(220, 70%, 50%) 0%, hsl(200, 80%, 45%) 25%, hsl(190, 90%, 40%) 50%, hsl(180, 100%, 35%) 75%, hsl(170, 100%, 30%) 100%);
+    --gradient-depth: linear-gradient(180deg, hsl(210, 100%, 60%) 0%, hsl(220, 90%, 35%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(195, 100%, 80%) 0%, hsl(210, 100%, 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220, 20%, 14%) 0%, hsl(220, 15%, 18%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(120, 60%, 50%) 0%, hsl(140, 70%, 45%) 100%);
+    --gradient-programming: linear-gradient(135deg, #87CEEB 100%, #87CEEB 100%);
+
+    /* Sombras para efectos de profundidad */
+    --shadow-ocean: 0 20px 40px -10px hsl(210, 100%, 20%, 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(220, 50%, 10%, 0.4);
+    --shadow-hover: 0 12px 40px -8px hsl(210, 100%, 40%, 0.25);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    /* Modo claro para el dashboard de buceo */
+    --background: 210 20% 98%;
+    --foreground: 220 25% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 8%;
+    --border: 220 15% 85%;
+    --input: 220 15% 90%;
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(210, 20%, 96%) 100%);
+    --shadow-card: 0 8px 32px -8px hsl(220, 50%, 50%, 0.15);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-ocean), url('/src/assets/ocean-background.jpg');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-attachment: fixed, fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Componentes específicos del dashboard de buceo */
+  .ocean-card {
+    @apply bg-card border border-border rounded-xl p-6;
+    background: rgba(34, 42, 53, 0.7);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ocean-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .metric-card {
+    @apply ocean-card text-center;
+  }
+
+  .ocean-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: var(--gradient-success);
+    color: hsl(var(--success-foreground));
+  }
+
+  .ocean-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px hsl(120, 60%, 50%, 0.4);
+  }
+
+  .tab-button {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2;
+    background: transparent;
+    color: hsl(var(--muted-foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .tab-button.active {
+    background: var(--gradient-surface);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-card);
+  }
+
+  .filter-select {
+    @apply bg-input border border-border rounded-lg px-4 py-2;
+    background: var(--gradient-card);
+    color: hsl(var(--foreground));
+  }
+
+  .ocean-input {
+    @apply bg-input border border-border rounded-lg px-4 py-2;
+    background: var(--gradient-card);
+    color: hsl(var(--foreground)); /* Texto claro para fondo oscuro */
+  }
+
+  .ocean-input option {
+    background: hsl(220, 20%, 12%);
+    color: hsl(var(--foreground));
+  }
+
+  .data-table {
+    @apply w-full border-collapse;
+  }
+
+  .data-table th {
+    @apply bg-secondary text-secondary-foreground px-4 py-3 text-left font-semibold;
+    background: var(--gradient-card);
+  }
+
+  .data-table td {
+    @apply px-4 py-3 border-b border-border;
+  }
+
+  .data-table tr:hover {
+    @apply bg-muted/50;
+  }
+
+  .alert-high {
+    @apply text-destructive font-bold;
+  }
+
+  .alert-medium {
+    @apply text-warning font-semibold;
+  }
+
+  .alert-low {
+    @apply text-success;
+  }
+}

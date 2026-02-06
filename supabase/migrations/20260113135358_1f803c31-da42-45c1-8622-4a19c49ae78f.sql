@@ -1,0 +1,11 @@
+-- Agregar nuevas columnas a la tabla centro_materiales para soportar el formato de Excel
+ALTER TABLE public.centro_materiales
+ADD COLUMN IF NOT EXISTS p TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS codigo_material TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS cantidad NUMERIC DEFAULT 0,
+ADD COLUMN IF NOT EXISTS um TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS grupo_articulos TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS almacen TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS gcp TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS orgc TEXT DEFAULT '',
+ADD COLUMN IF NOT EXISTS solicitante TEXT DEFAULT '';

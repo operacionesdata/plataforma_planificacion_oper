@@ -1,0 +1,4 @@
+project_id = "ayfjrkjwbljkecqfsrxd"
+
+[functions.get-ships]
+verify_jwt = false
